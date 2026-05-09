@@ -204,6 +204,23 @@ This project is committed to **reproducible, honest research**:
 
 ---
 
+## ◈ Full Research Blueprint
+
+The complete **Research Blueprint v1.0** is available at:
+
+- [`docs/RESEARCH_BLUEPRINT_v1.md`](docs/RESEARCH_BLUEPRINT_v1.md)
+- Includes a new **Mathematical Realism & Derivation Addendum** (Section 25) for first-principles update rules and guardrails against unsupported claims.
+
+---
+
+## ◈ Latest Research Execution
+
+A reproducible multi-seed benchmark snapshot is documented in:
+
+- [`docs/RESEARCH_EXECUTION_REPORT.md`](docs/RESEARCH_EXECUTION_REPORT.md)
+
+---
+
 ## ◈ License
 
 Licensed under the **[MIT License](LICENSE)** — open for research and extension.

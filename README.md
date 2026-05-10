@@ -1,330 +1,138 @@
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:050520,50:0d0d4f,100:050520&height=220&section=header&text=HAQOA-X&fontSize=85&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Hyper-Adaptive%20Quantum-Inspired%20Optimization%20Architecture&descAlignY=60&descSize=16&descColor=818cf8" width="100%"/>
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=19&pause=1000&color=818CF8&center=true&vCenter=true&width=900&lines=AQSE-v2+%7C+5-Component+Energy+%2B+Similarity+Density+%2B+Turbulence+Monitor;Boltzmann+Probabilities+%7C+Dynamic+Collapse+Gate+%7C+Multi-Scale+Search;Phase+1+%E2%9C%85+Phase+2+%E2%9C%85+Phase+3+%E2%9C%85+Phase+4+%E2%9C%85+%E2%80%94+Statistical+Validation+Complete)](https://git.io/typing-svg)
-
+<!-- Animated Header -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=Amit&fontSize=80&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=AI%2FML%20Engineer%20%7C%20Building%20Scalable%20Intelligent%20Systems&descAlignY=60&descSize=18&descColor=a78bfa" width="100%"/>
+<!-- Typing SVG -->
+[![Typing SVG]( https://readme-typing-svg.demolab.com ?font=JetBrains+Mono&weight=600&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=650&lines=GenAI+%7C+RAG+Architectures+%7C+Multi-Agent+Systems;LLMs+%7C+MLOps+%7C+Applied+AI+Engineering;Building+AI+that+works+in+Production+%F0%9F%9A%80)](https://git.io/typing-svg )
 <br/>
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python_3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
-[![SciPy](https://img.shields.io/badge/SciPy-Wilcoxon%2FFriedman-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)](https://scipy.org/)
-[![Phase](https://img.shields.io/badge/Phases_1–4-Complete-22c55e?style=for-the-badge)](https://github.com/GypsianMonk)
-[![Research](https://img.shields.io/badge/AQSE--v2-Research_Blueprint-818cf8?style=for-the-badge)](https://github.com/GypsianMonk)
-
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-gypsianmonk-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)]( https://www.linkedin.com/in/gypsianmonk/ )
+[![GitHub](https://img.shields.io/badge/GitHub-GypsianMonk-181717?style=for-the-badge&logo=github&logoColor=white)]( https://github.com/GypsianMonk )
+[![Profile Views](https://komarev.com/ghpvc/?username=GypsianMonk&style=for-the-badge&color=7c3aed&label=PROFILE+VIEWS)]( https://github.com/GypsianMonk )
 </div>
-
 ---
-
-## ◈ What is HAQOA-X?
-
-> **HAQOA-X** redefines optimization as **evolving probabilistic topology**.
-> Instead of deterministic search or random stochastic jumps, solutions behave
-> as probability fields under entropy-regulated evolutionary pressure.
-
-The system is:
-
+## ◈ About Me
+```python
+class AmitChaudhary:
+    role        = "AI/ML Engineer"
+    focus       = ["GenAI", "RAG Pipelines", "Multi-Agent Systems", "MLOps"]
+    interests   = ["Fraud Detection", "Applied AI", "LLM Engineering"]
+    education   = "M.Tech — Artificial Intelligence & Machine Learning"
+    currently   = "Building production-grade AI systems @ Sunstone EdTech"
+    portfolio   = "github.com/GypsianMonk"
+    def philosophy(self):
+        return "Not just notebooks — deployable AI that works in the real world."
 ```
-✦  Neither purely deterministic  nor  purely random
-✦  Probabilistic · Adaptive · Self-organizing · Information-driven
-```
-
-**AQSE-v2** extends the original engine with a **5-component energy field**, **similarity density**, **turbulence monitoring**, **dynamic collapse gating**, and **3-layer multi-scale search** — all statistically validated across 15 independent runs.
-
 ---
-
-## ◈ Mathematical Model
-
-```
-|Ψ_t⟩  = Σ αᵢ |sᵢ⟩                                 (state superposition)
-
-Eᵢ     = w₁·Cᵢ + w₂·Dᵢ + w₃·Rᵢ + w₄·Vᵢ + w₅·Nᵢ    (5-component energy)
-
-Pᵢ     = exp(−β·Eᵢ) / Σⱼ exp(−β·Eⱼ)                (Boltzmann probabilities)
-
-Hₜ     = −Σ Pᵢ log Pᵢ                                (Shannon entropy)
-H'(t)  = (1−μ)H(t) + μH(t−1)                         (entropy damping)
-
-βₜ     = β₀(1 + κ·H(t)/H_max)                        (adaptive amplification)
-
-θ(t)   = θ₀ + α(1 − H(t)/H_max)                      (dynamic collapse gate)
-
-G(t)   = ρ · σ_H(t) / (σ_H(t) + ε)                   (regeneration rate)
-
-Rᵢ     = γ₁·Qᵢ − γ₂·Cᵢ − γ₃·Vᵢ + γ₄·Lᵢ             (AI reward signal)
-Lᵢ     = ΔQᵢ / (Δt + ε)                              (learning potential)
-
-T(t)   = |H(t) − H(t−1)|                              (turbulence)
-```
-
-<div align="center">
-
-| Symbol | Meaning | Symbol | Meaning |
-|:---:|:---|:---:|:---|
-| Cᵢ | Objective cost | Vᵢ | Quality volatility |
-| Dᵢ | Similarity density | Nᵢ | Stochastic noise |
-| Rᵢ | Instability risk | Lᵢ | Learning potential |
-
-</div>
-
----
-
-## ◈ System Architecture
-
-```
-                  ┌─────────────────────────────────────────┐
-                  │         HAQOA-X Engine (AQSE-v2)        │
-                  └─────────────────────────────────────────┘
-                                      │
-        ┌─────────────────────────────┼──────────────────────────────┐
-        ▼                             ▼                              ▼
-┌──────────────┐           ┌──────────────────┐           ┌──────────────────┐
-│  Similarity  │           │  5-Component     │           │  Entropy         │
-│  Density     │           │  Energy Field    │           │  Intelligence    │
-│  Field Dᵢ    │           │  E=f(C,D,R,V,N)  │           │  H(t) β(t) T(t)  │
-└──────────────┘           └──────────────────┘           └──────────────────┘
-        │                             │                              │
-        └─────────────────────────────┼──────────────────────────────┘
-                                      ▼
-                          ┌───────────────────┐
-                          │  Boltzmann Pᵢ     │
-                          │  exp(−β · Eᵢ)     │
-                          └───────────────────┘
-                                      │
-              ┌───────────────────────┼─────────────────────────┐
-              ▼                       ▼                         ▼
-   ┌──────────────────┐   ┌──────────────────────┐   ┌──────────────────────┐
-   │ Dynamic Collapse │   │ Entropy-Triggered    │   │ Multi-Scale Search   │
-   │ θ(t)=θ₀+α(1−E)  │   │ Regeneration G(t)    │   │ Global · Regional ·  │
-   └──────────────────┘   └──────────────────────┘   │ Local Layers         │
-                                      │               └──────────────────────┘
-                                      ▼
-                          ┌───────────────────┐
-                          │  AI Reward Model  │
-                          │  Rᵢ = f(Q,C,V,L)  │
-                          └───────────────────┘
-```
-
----
-
-## ◈ Benchmark Results
-
-### 20 Cities — Random Instance
-
-<div align="center">
-
-| Algorithm | Best Tour | Gap vs 2-opt |
-|:---:|:---:|:---:|
-| 🏆 **HAQOA-X** | **341.6** | **−0.38%** |
-| HAQOA | 342.9 | 0.00% |
-| GA | 341.6 | −0.38% |
-| SA | 341.6 | −0.38% |
-| PSO | 341.6 | −0.38% |
-| ACO | 341.6 | −0.38% |
-| ─ 2-opt Reference | 342.9 | 0% |
-
-</div>
-
-> ✦ HAQOA-X matches best-in-class on small instances.  
-> ✦ Provides significantly richer diagnostics: energy breakdown · turbulence monitor · multi-scale activity · AI reward dynamics.  
-> ✦ All results reproducible with fixed seeds — statistically validated via Wilcoxon + Friedman across 15 independent runs.
-
----
-
-## ◈ Benchmark Visualizations
-
-### Convergence — Medium Instance (50 Cities)
-
-> HAQOA converges to near-optimal within the first 50 iterations and holds flat — while SA, PSO, and GA are still descending past iteration 200.
-
-![Convergence](assets/convergence_medium.png)
-
----
-
-### Solution Quality Comparison — Medium Instance
-
-> HAQOA achieves **342.27** — outperforming GA (383.57) and PSO (415.11) by a significant margin, competitive with SA (340.44) and ACO (345.82).
-
-![Solution Quality](assets/quality_bars_medium.png)
-
----
-
-### TSP Route Visualization — Medium Instance
-
-> Side-by-side route maps across all algorithms. HAQOA's tour structure is visibly cleaner and less crossing than GA and PSO.
-
-![TSP Routes](assets/routes_medium.png)
-
----
-
-### HAQOA Internal Dynamics — Entropy & Amplification
-
-> Top: Best tour distance drops sharply in the first 50 iterations, then stabilizes.  
-> Middle: Shannon entropy `H_t` settles near maximum — the system maintains healthy exploration diversity throughout.  
-> Bottom: Amplification `β_t` rises rapidly and plateaus — self-regulating without any manual schedule tuning.
-
-![Entropy Dynamics](assets/entropy_dynamics_medium.png)
-
----
-
-### Population Quality Evolution
-
-> Mean population quality (shaded blue) converges toward the best-found tour (solid blue line) over 500 iterations. Entropy `H_t` stabilizes near 4.142, confirming sustained population diversity — no premature convergence.
-
-![Population Dynamics](assets/population_dynamics_medium.png)
-
----
-
-## ◈ Implementation Status
-
-<div align="center">
-
-| Component | Status | Location |
-|:---|:---:|:---|
-| AQSE-v1 State Superposition Engine | ✅ | [`haqoa/engine.py`](haqoa/engine.py) |
-| **AQSE-v2 Full Energy System** | ✅ | [`haqoa/engine_x.py`](haqoa/engine_x.py) |
-| **5-Component Energy Function** | ✅ | [`haqoa/engine_x.py`](haqoa/engine_x.py) |
-| **Similarity Density Field** | ✅ | [`haqoa/similarity.py`](haqoa/similarity.py) |
-| **Dynamic Collapse Gate θ(t)** | ✅ | [`haqoa/engine_x.py`](haqoa/engine_x.py) |
-| **Entropy-Triggered Regeneration** | ✅ | [`haqoa/engine_x.py`](haqoa/engine_x.py) |
-| **AI Reward + Learning Potential** | ✅ | [`haqoa/engine_x.py`](haqoa/engine_x.py) |
-| **Turbulence Monitor T(t)** | ✅ | [`haqoa/engine_x.py`](haqoa/engine_x.py) |
-| **Multi-Scale Search (3 layers)** | ✅ | [`haqoa/multi_scale.py`](haqoa/multi_scale.py) |
-| TSP Problem + Benchmarks | ✅ | [`haqoa/problems/tsp.py`](haqoa/problems/tsp.py) |
-| OX / PMX / Edge-Assembly Crossover | ✅ | [`haqoa/operators.py`](haqoa/operators.py) |
-| GA / SA / PSO / ACO Baselines | ✅ | [`haqoa/baselines/algorithms.py`](haqoa/baselines/algorithms.py) |
-| Comparison Table + Gap Metrics | ✅ | [`haqoa/metrics.py`](haqoa/metrics.py) |
-| **Phase 3 Statistical Validation** | ✅ | [`haqoa/metrics.py`](haqoa/metrics.py) |
-| **Wilcoxon + Friedman + CI** | ✅ | [`haqoa/metrics.py`](haqoa/metrics.py) |
-| Convergence / Route Visualization | ✅ | [`haqoa/visualization/plots.py`](haqoa/visualization/plots.py) |
-| **Energy Breakdown Plot** | ✅ | [`haqoa/visualization/plots.py`](haqoa/visualization/plots.py) |
-| **Multi-Scale Activity Plot** | ✅ | [`haqoa/visualization/plots.py`](haqoa/visualization/plots.py) |
-| **HAQOA-X Full Dashboard** | ✅ | [`haqoa/visualization/plots.py`](haqoa/visualization/plots.py) |
-| **Phase 3 Statistical Dashboard** | ✅ | [`haqoa/visualization/plots.py`](haqoa/visualization/plots.py) |
-| HAQOA-X Experiment Runner | ✅ | [`run_haqoax.py`](run_haqoax.py) |
-| Phase 3 Multi-Run Runner | ✅ | [`run_phase3.py`](run_phase3.py) |
-| Phase 1+2 Legacy Runner | ✅ | [`run_experiment.py`](run_experiment.py) |
-
-</div>
-
----
-
-## ◈ Project Structure
-
-```
-haqoa/
-├── engine.py              ← AQSE-v1: original HAQOA core
-├── engine_x.py            ← AQSE-v2: full HAQOA-X engine  ★
-├── similarity.py          ← similarity density field       ★
-├── multi_scale.py         ← 3-layer hierarchical search    ★
-├── operators.py           ← OX · PMX · edge-assembly crossover
-├── metrics.py             ← comparison + Phase 3 statistical tests
-├── problems/
-│   └── tsp.py             ← TSPInstance + 6 benchmark instances
-├── baselines/
-│   └── algorithms.py      ← GA · SA · PSO · ACO
-└── visualization/
-    └── plots.py           ← all visualization functions
-
-assets/                    ← benchmark output plots
-run_haqoax.py              ← HAQOA-X experiment CLI         ★
-run_phase3.py              ← Phase 3 multi-run statistical CLI ★
-run_experiment.py          ← legacy Phase 1+2 CLI
-requirements.txt
-```
-
----
-
-## ◈ Quick Start
-
-```bash
-pip install -r requirements.txt
-
-# HAQOA-X on 20-city instance
-python run_haqoax.py --instance small --iters 300 --pop 60
-
-# HAQOA-X on 50-city clustered instance
-python run_haqoax.py --instance medium --iters 500 --pop 80
-
-# Sweep all benchmark instances
-python run_haqoax.py --compare --iters 300
-
-# Phase 3 statistical validation (15 runs)
-python run_phase3.py --instance small --runs 15 --iters 300
-
-# Legacy HAQOA (AQSE-v1)
-python run_experiment.py --instance small --iters 500
-```
-
----
-
 ## ◈ Tech Stack
-
 <div align="center">
-
-### ⟡ Core
-[![Python](https://img.shields.io/badge/Python_3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
-[![SciPy](https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white)](https://scipy.org/)
-
-### ⟡ Visualization
-[![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge)](https://matplotlib.org/)
-[![Seaborn](https://img.shields.io/badge/Seaborn-4C8CBF?style=for-the-badge)](https://seaborn.pydata.org/)
-
-### ⟡ Statistical Validation
-[![Wilcoxon](https://img.shields.io/badge/Wilcoxon_Test-SciPy-8CAAE6?style=for-the-badge)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html)
-[![Friedman](https://img.shields.io/badge/Friedman_Test-SciPy-8CAAE6?style=for-the-badge)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.friedmanchisquare.html)
-[![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
-
-### ⟡ Future Roadmap
-[![Qiskit](https://img.shields.io/badge/Qiskit-Phase_7-6929C4?style=for-the-badge&logo=ibm&logoColor=white)](https://qiskit.org/)
-[![Stable Baselines3](https://img.shields.io/badge/RL_Reward_Shaping-Phase_6-FF6B35?style=for-the-badge)](https://stable-baselines3.readthedocs.io/)
-
+### ⟡ Languages & Core
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)]( https://www.python.org/ )
+[![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white)]( https://www.postgresql.org/ )
+[![R](https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white)]( https://www.r-project.org/ )
+### ⟡ AI / ML / GenAI
+[![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)]( https://www.langchain.com/ )
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)]( https://pytorch.org/ )
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)]( https://www.tensorflow.org/ )
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)]( https://scikit-learn.org/ )
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)]( https://huggingface.co/ )
+[![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)]( https://openai.com/ )
+### ⟡ Vector DBs & Retrieval
+[![FAISS](https://img.shields.io/badge/FAISS-0467DF?style=for-the-badge&logo=meta&logoColor=white)]( https://faiss.ai/ )
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-FF6B35?style=for-the-badge&logoColor=white)]( https://www.trychroma.com/ )
+[![Pinecone](https://img.shields.io/badge/Pinecone-000000?style=for-the-badge&logo=pinecone&logoColor=white)]( https://www.pinecone.io/ )
+### ⟡ Data & MLOps
+[![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)]( https://pandas.pydata.org/ )
+[![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)]( https://numpy.org/ )
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)]( https://fastapi.tiangolo.com/ )
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)]( https://www.docker.com/ )
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)]( https://kubernetes.io/ )
+[![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)]( https://git-scm.com/ )
+[![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)]( https://cloud.google.com/ )
 </div>
-
 ---
-
-## ◈ Roadmap
-
-```
-✅  Phase 1  →  Mathematical formalization + AQSE-v1 core engine
-✅  Phase 2  →  TSP simulation + baseline comparison
-✅  Phase 3  →  Multi-run statistical validation (Wilcoxon, Friedman, CI)
-✅  Phase 4  →  HAQOA-X: 5-component energy + multi-scale search
-⬜  Phase 5  →  Large-scale evaluation (n=100, n=500 TSP)
-⬜  Phase 6  →  RL-based adaptive reward shaping
-⬜  Phase 7  →  Qiskit simulation layer (quantum circuit mapping)
-⬜  Phase 8  →  Multi-objective HAQOA-X (Pareto front evolution)
-⬜  Phase 9  →  Beyond TSP: scheduling · portfolio · NAS
-```
-
----
-
-## ◈ Research Standards
-
-```
-✦  Quantum-inspired — not quantum-dependent. No "quantum supremacy" language.
-✦  All results reproducible with fixed random seeds
-✦  Mandatory baseline comparisons before any performance claims
-✦  Statistical significance: Wilcoxon + Friedman across 15 independent runs
-✦  Every mechanism survives simulation, stress testing, and statistical validation
-```
-
----
-
-## ◈ License
-
-Licensed under the **[MIT License](LICENSE)** — open for research and extension.
-
----
-
+## ◈ Featured Projects
 <div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:050520,50:0d0d4f,100:050520&height=120&section=footer" width="100%"/>
-
-*"Probabilistic. Adaptive. Self-organizing. Information-driven."*
-
-**Built with ❤️ by [GypsianMonk](https://github.com/GypsianMonk)**
-
+<table>
+<tr>
+<td width="50%" valign="top">
+### 🛡️ FraudGuard — ML Fraud Detection
+[![Repo](https://img.shields.io/badge/View_Repo-181717?style=for-the-badge&logo=github&logoColor=white)]( https://github.com/GypsianMonk/fraudguard-ml )
+> Production-grade fraud detection pipeline built for real-time transaction scoring.
+**Highlights:**
+- ✦ XGBoost & Random Forest ensemble with advanced feature engineering
+- ✦ **98% accuracy** with precision-recall optimization for imbalanced data
+- ✦ Scalable pipeline architected for real-time inference
+- ✦ Full preprocessing, model training & evaluation suite
+`XGBoost` `Random Forest` `Scikit-Learn` `Pandas` `Imbalanced-learn`
+</td>
+<td width="50%" valign="top">
+### 📚 Advanced Multimodal RAG System
+[![Repo](https://img.shields.io/badge/View_Repo-181717?style=for-the-badge&logo=github&logoColor=white)]( https://github.com/GypsianMonk/advanced-multimodal-rag )
+> Sophisticated RAG pipeline — hybrid retrieval, reranking & hallucination detection.
+**Highlights:**
+- ✦ Hybrid retrieval: **BM25 + FAISS** for dense-sparse fusion
+- ✦ **Cross-encoder reranking** for precision result scoring
+- ✦ Hallucination detection with epistemic uncertainty decomposition
+- ✦ FastAPI interface · ~4,300 lines across ~60 modules
+`LangChain` `FAISS` `BM25` `FastAPI` `HuggingFace` `LLMs`
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+### 🔍 RAG System — Semantic QA Engine
+[![Repo](https://img.shields.io/badge/View_Repo-181717?style=for-the-badge&logo=github&logoColor=white)]( https://github.com/GypsianMonk/Rag_system )
+> End-to-end retrieval-augmented generation with custom document ingestion.
+**Highlights:**
+- ✦ Embeddings + vector DB (FAISS/Chroma) powered retrieval
+- ✦ Semantic document chunking + LLM-based QA
+- ✦ Context-aware responses reduce hallucination rate
+- ✦ Plug-and-play document ingestion & querying
+`FAISS` `ChromaDB` `OpenAI` `LangChain` `Python`
+</td>
+<td width="50%" valign="top">
+### 🤖 Crypto Trading Bot — Freqtrade
+[![Repo](https://img.shields.io/badge/View_Repo-181717?style=for-the-badge&logo=github&logoColor=white)]( https://github.com/GypsianMonk )
+> Algorithmic trading bot with custom multi-indicator strategy on KuCoin.
+**Highlights:**
+- ✦ Custom strategy: **RSI, MACD, BB, EMA, ATR** — no external TA libs
+- ✦ Menu-driven launcher with full config management
+- ✦ Production-deployed on KuCoin via Freqtrade framework
+- ✦ Includes DNS fix tooling for India-specific exchange routing
+`Freqtrade` `Python` `KuCoin` `Algorithmic Trading`
+</td>
+</tr>
+</table>
 </div>
+---
+## ◈ Core Expertise Areas
+<div align="center">
+| Domain | Skills |
+|---|---|
+| 🧠 **GenAI & LLMs** | Prompt Engineering, RAG, Fine-tuning, Agent Orchestration |
+| 🔍 **Information Retrieval** | BM25, FAISS, Hybrid Search, Cross-Encoder Reranking |
+| 🛡️ **Applied ML** | Fraud Detection, Anomaly Detection, Classification, Feature Engineering |
+| 🤖 **Multi-Agent Systems** | LangChain Agents, Tool Use, Memory, Orchestration |
+| ⚙️ **MLOps** | FastAPI, Docker, Kubernetes, CI/CD, Model Serving |
+| 📊 **Data Engineering** | Pandas, NumPy, SQL, Pipeline Design |
+</div>
+---
+## ◈ GitHub Stats
+<div align="center">
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=GypsianMonk&show_icons=true&theme=midnight-purple&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d0d1a&title_color=a78bfa&icon_color=7c3aed&text_color=c4b5fd"/>
+<img height="180em" src=" https://github-readme-stats.vercel.app/api/top-langs/?username=GypsianMonk&layout=compact&langs_count=8&theme=midnight-purple&hide_border=true&bg_color=0d0d1a&title_color=a78bfa&text_color=c4b5fd"/>
+<br/>
+[![GitHub Streak]( https://streak-stats.demolab.com ?user=GypsianMonk&theme=midnight-purple&hide_border=true&background=0D0D1A&stroke=7c3aed&ring=a78bfa&fire=c4b5fd&currStreakLabel=a78bfa)](https://git.io/streak-stats )
+</div>
+---
+## ◈ Currently
+```
+🔬 Pursuing   →  M.Tech in Artificial Intelligence & Machine Learning
+🏗️ Building   →  Multi-Agent & RAG systems for production deployment
+📖 Exploring  →  LLM orchestration, epistemic uncertainty & MLOps at scale
+🎯 Open to    →  AI/ML Engineering roles | GenAI | Applied Research
+```
+---
+<div align="center">
+<!-- Footer Wave -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" width="100%"/>
+*"Not just notebooks — building AI systems that actually work in production."*
+**⭐ Star a repo if you find it useful — it means a lot!**
+</div>` did not appear verbatim in /workspace/haqoa_project/README.md.

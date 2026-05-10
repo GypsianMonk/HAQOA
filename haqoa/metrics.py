@@ -46,7 +46,12 @@ def area_under_curve(history: List[float]) -> float:
     lo, hi = arr.min(), arr.max()
     if hi == lo:
         return 0.0
-    return float(np.trapz((arr - lo) / (hi - lo)) / len(arr))
+    # np.trapz removed in NumPy 2.0; np.trapezoid is the replacement
+    try:
+        area = np.trapezoid((arr - lo) / (hi - lo))
+    except AttributeError:
+        area = np.trapz((arr - lo) / (hi - lo))   # NumPy < 2.0 fallback
+    return float(area / len(arr))
 
 
 def comparison_table(

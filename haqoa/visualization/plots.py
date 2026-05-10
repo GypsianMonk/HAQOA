@@ -82,7 +82,7 @@ def plot_entropy_dynamics(result, save_path=None, figsize=(10, 6)):
     entropy    = [r.entropy      for r in history]
     beta       = [r.beta         for r in history]
 
-    fig = plt.figure(figsize=figsize, facecolor="#F8FAFC")
+    fig = plt.figure(figsize=figsize, facecolor="#F8FAFC", layout="constrained")
     gs  = GridSpec(2, 1, figure=fig, hspace=0.38)
 
     ax1 = fig.add_subplot(gs[0]); _ax_style(ax1)
@@ -626,7 +626,7 @@ def plot_haqoax_dashboard(
     turb  = result.turbulence_curve
     bd    = result.energy_breakdown
 
-    fig = plt.figure(figsize=figsize, facecolor="#F8FAFC")
+    fig = plt.figure(figsize=figsize, facecolor="#F8FAFC", layout="constrained")
     gs  = GridSpec(3, 2, figure=fig, hspace=0.45, wspace=0.32)
     fig.suptitle("HAQOA-X — Full System Dashboard", fontsize=14, fontweight="bold")
 

@@ -161,6 +161,7 @@ haqoa/
     └── plots.py        ← all visualization functions
 run_haqoax.py           ← HAQOA-X experiment CLI ★
 run_phase3.py           ← Phase 3 multi-run statistical CLI ★
+run_phase5.py           ← Phase 5 large-scale evaluation CLI ★
 run_experiment.py       ← legacy Phase 1+2 CLI
 requirements.txt
 setup.py
@@ -182,6 +183,15 @@ setup.py
 | ACO        | 341.6     | −0.38%       |
 | 2-opt ref  | 342.9     |  0%          |
 
+> Phase 5 results (n=100–200, quick mode):
+> | Instance | n | HAQOA-X gap | Next best |
+> |----------|---|-------------|-----------|
+> | large | 100 | **−3.65%** | ACO −3.20% |
+> | n200_random | 200 | **−0.85%** | ACO +10.08% |
+> | n200_mixed | 200 | **−1.04%** | ACO +4.66% |
+>
+> HAQOA-X wins 3/3 large-scale instances. At n=200, gap vs baselines widens significantly.
+>
 > HAQOA-X matches best-in-class on small instances while providing
 > significantly richer diagnostics: energy breakdown, turbulence monitoring,
 > multi-scale activity, and AI reward dynamics.
@@ -194,7 +204,7 @@ setup.py
 - [x] Phase 2 — TSP simulation + baseline comparison
 - [x] Phase 3 — Multi-run statistical validation (Wilcoxon, Friedman, CI)
 - [x] **Phase 4 — HAQOA-X: full 5-component energy + multi-scale search**
-- [ ] Phase 5 — Large-scale evaluation (n=100, n=500 TSP)
+- [x] **Phase 5 — Large-scale evaluation (n=100, 200, 300, 500 TSP)**
 - [ ] Phase 6 — RL-based adaptive reward shaping
 - [ ] Phase 7 — Qiskit simulation layer (quantum circuit mapping)
 - [ ] Phase 8 — Multi-objective HAQOA-X (Pareto front evolution)

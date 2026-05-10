@@ -1,40 +1,84 @@
-# HAQOA — Hybrid AI-Assisted Quantum-Inspired Optimization Architecture
+# HAQOA-X — Hyper-Adaptive Quantum-Inspired Optimization Architecture
 
-> **AQSE-v1**: Adaptive Quantum-Inspired State Evolution Engine  
-> Research Blueprint Implementation — Phase 1 + Phase 2
+> **AQSE-v2** : Adaptive Quantum-Inspired State Evolution Engine (v2)
+> Research Blueprint Implementation — Phase 1 · Phase 2 · Phase 3
 
 ---
 
-## What's implemented
+## What is HAQOA-X?
 
-| Component | Status | File |
-|---|---|---|
-| State Superposition Engine | ✅ | `haqoa/engine.py` |
-| Probabilistic Amplification (β dynamics) | ✅ | `haqoa/engine.py` |
-| Shannon Entropy Monitor | ✅ | `haqoa/engine.py` |
-| Adaptive Collapse Gate | ✅ | `haqoa/engine.py` |
-| Evolution Layer (OX, PMX, edge-assembly crossover) | ✅ | `haqoa/operators.py` |
-| TSP Problem + Benchmarks | ✅ | `haqoa/problems/tsp.py` |
-| GA Baseline | ✅ | `haqoa/baselines/algorithms.py` |
-| SA Baseline | ✅ | `haqoa/baselines/algorithms.py` |
-| PSO (Discrete) Baseline | ✅ | `haqoa/baselines/algorithms.py` |
-| ACO Baseline | ✅ | `haqoa/baselines/algorithms.py` |
-| Metrics + Statistical Evaluation | ✅ | `haqoa/metrics.py` |
-| Convergence / Entropy / Route Visualization | ✅ | `haqoa/visualization/plots.py` |
-| Experiment Runner CLI | ✅ | `run_experiment.py` |
+HAQOA-X redefines optimization as **evolving probabilistic topology**.
+Instead of deterministic search or random stochastic jumps, solutions behave
+as probability fields under entropy-regulated evolutionary pressure.
+
+The system is:
+- **neither purely deterministic** nor **purely random**
+- **probabilistic** · **adaptive** · **self-organizing** · **information-driven**
 
 ---
 
 ## Mathematical Model
 
 ```
-|Ψ_t⟩  = Σ αᵢ |sᵢ⟩                      (state superposition)
-Pᵢ     = softmax(β · rank_score_i)        (probability amplitudes)
-Hₜ     = -Σ Pᵢ log Pᵢ                    (search entropy)
-βₜ     = β₀ (1 + κ Hₜ)                   (adaptive amplification)
-R(sᵢ)  = w₁·Qᵢ − w₂·Cᵢ − w₃·Eᵢ          (AI reward signal)
-C(sᵢ)  = 1 if Pᵢ > θₜ                    (collapse gate)
+|Ψ_t⟩  = Σ αᵢ |sᵢ⟩                                (state superposition)
+
+Eᵢ     = w₁·Cᵢ + w₂·Dᵢ + w₃·Rᵢ + w₄·Vᵢ + w₅·Nᵢ   (5-component energy)
+
+Pᵢ     = exp(−β·Eᵢ) / Σⱼ exp(−β·Eⱼ)               (Boltzmann probabilities)
+
+Hₜ     = −Σ Pᵢ log Pᵢ                               (Shannon entropy)
+H'(t)  = (1−μ)H(t) + μH(t−1)                        (entropy damping)
+
+βₜ     = β₀(1 + κ·H(t)/H_max)                       (adaptive amplification)
+
+θ(t)   = θ₀ + α(1 − H(t)/H_max)                     (dynamic collapse gate)
+
+G(t)   = ρ · σ_H(t) / (σ_H(t) + ε)                  (regeneration rate)
+
+Rᵢ     = γ₁·Qᵢ − γ₂·Cᵢ − γ₃·Vᵢ + γ₄·Lᵢ            (AI reward signal)
+Lᵢ     = ΔQᵢ / (Δt + ε)                             (learning potential)
+
+T(t)   = |H(t) − H(t−1)|                             (turbulence)
 ```
+
+| Symbol | Meaning                  |
+|--------|--------------------------|
+| Cᵢ     | objective cost           |
+| Dᵢ     | similarity density       |
+| Rᵢ     | instability risk         |
+| Vᵢ     | quality volatility       |
+| Nᵢ     | stochastic noise         |
+| Lᵢ     | learning potential       |
+
+---
+
+## Implementation Status
+
+| Component                          | Status | File                         |
+|------------------------------------|--------|------------------------------|
+| AQSE-v1 State Superposition Engine | ✅     | `haqoa/engine.py`            |
+| **AQSE-v2 Full Energy System**     | ✅     | `haqoa/engine_x.py`          |
+| **5-Component Energy Function**    | ✅     | `haqoa/engine_x.py`          |
+| **Similarity Density Field**       | ✅     | `haqoa/similarity.py`        |
+| **Dynamic Collapse Gate θ(t)**     | ✅     | `haqoa/engine_x.py`          |
+| **Entropy-Triggered Regeneration** | ✅     | `haqoa/engine_x.py`          |
+| **AI Reward + Learning Potential** | ✅     | `haqoa/engine_x.py`          |
+| **Turbulence Monitor T(t)**        | ✅     | `haqoa/engine_x.py`          |
+| **Multi-Scale Search (3 layers)**  | ✅     | `haqoa/multi_scale.py`       |
+| TSP Problem + Benchmarks           | ✅     | `haqoa/problems/tsp.py`      |
+| OX / PMX / Edge-Assembly Crossover | ✅     | `haqoa/operators.py`         |
+| GA / SA / PSO / ACO Baselines      | ✅     | `haqoa/baselines/algorithms.py` |
+| Comparison Table + Gap Metrics     | ✅     | `haqoa/metrics.py`           |
+| **Phase 3 Statistical Validation** | ✅     | `haqoa/metrics.py`           |
+| **Wilcoxon + Friedman + CI**       | ✅     | `haqoa/metrics.py`           |
+| Convergence / Route Visualization  | ✅     | `haqoa/visualization/plots.py` |
+| **Energy Breakdown Plot**          | ✅     | `haqoa/visualization/plots.py` |
+| **Multi-Scale Activity Plot**      | ✅     | `haqoa/visualization/plots.py` |
+| **HAQOA-X Full Dashboard**         | ✅     | `haqoa/visualization/plots.py` |
+| **Phase 3 Statistical Dashboard**  | ✅     | `haqoa/visualization/plots.py` |
+| HAQOA-X Experiment Runner          | ✅     | `run_haqoax.py`              |
+| Phase 3 Multi-Run Runner           | ✅     | `run_phase3.py`              |
+| Phase 1+2 Legacy Runner            | ✅     | `run_experiment.py`          |
 
 ---
 
@@ -43,41 +87,59 @@ C(sᵢ)  = 1 if Pᵢ > θₜ                    (collapse gate)
 ```bash
 pip install -r requirements.txt
 
-# Small instance (20 cities)
-python run_experiment.py --instance small --iters 500 --pop 60
+# HAQOA-X on 20-city instance
+python run_haqoax.py --instance small --iters 300 --pop 60
 
-# Medium instance (50 cities, clustered)
-python run_experiment.py --instance medium --iters 500 --pop 80
+# HAQOA-X on 50-city clustered instance
+python run_haqoax.py --instance medium --iters 500 --pop 80
 
-# Available instances: tiny, small, medium, large, circle_20
+# Sweep all benchmark instances
+python run_haqoax.py --compare --iters 300
+
+# Phase 3 statistical validation (15 runs)
+python run_phase3.py --instance small --runs 15 --iters 300
+
+# Legacy HAQOA (AQSE-v1)
+python run_experiment.py --instance small --iters 500
 ```
 
 ---
 
-## Benchmark Results
+## HAQOA-X System Architecture
 
-### 20 Cities (random)
-| Algorithm | Best Tour | Gap vs 2-opt |
-|---|---|---|
-| **HAQOA** | **398.2** | **−1.47%** |
-| GA | 372.4 | −7.86% |
-| SA | 393.2 | −2.71% |
-| PSO | 382.9 | −5.25% |
-| ACO | 372.4 | −7.86% |
-| 2-opt reference | 404.1 | 0% |
-
-### 50 Cities (clustered)
-| Algorithm | Best Tour | Gap vs 2-opt |
-|---|---|---|
-| **HAQOA** | **342.3** | **−0.98%** |
-| GA | 383.6 | +10.97% |
-| SA | 340.4 | −1.51% |
-| PSO | 415.1 | +20.09% |
-| ACO | 345.8 | +0.05% |
-| 2-opt reference | 345.7 | 0% |
-
-> HAQOA beats the greedy 2-opt baseline on both instances.  
-> On 50 cities, HAQOA outperforms GA, PSO, and ACO.
+```
+                  ┌──────────────────────────────────────┐
+                  │          HAQOA-X Engine (AQSE-v2)    │
+                  └──────────────────────────────────────┘
+                                    │
+        ┌───────────────────────────┼────────────────────────────┐
+        ▼                           ▼                            ▼
+┌──────────────┐          ┌─────────────────┐          ┌──────────────────┐
+│  Similarity  │          │  5-Component    │          │  Entropy         │
+│  Density     │          │  Energy Field   │          │  Intelligence    │
+│  Field D_i   │          │  E = f(C,D,R,V,N)│         │  H(t), β(t), T(t)│
+└──────────────┘          └─────────────────┘          └──────────────────┘
+        │                           │                            │
+        └───────────────────────────┼────────────────────────────┘
+                                    ▼
+                        ┌────────────────────┐
+                        │  Boltzmann P_i     │
+                        │  exp(−β·E_i)       │
+                        └────────────────────┘
+                                    │
+              ┌─────────────────────┼──────────────────────┐
+              ▼                     ▼                       ▼
+   ┌──────────────────┐  ┌────────────────────┐  ┌─────────────────────┐
+   │ Dynamic Collapse │  │ Entropy-Triggered  │  │ Multi-Scale Search  │
+   │ θ(t)=θ₀+α(1−E)  │  │ Regeneration G(t)  │  │ Global/Regional/    │
+   └──────────────────┘  └────────────────────┘  │ Local Layers        │
+                                    │             └─────────────────────┘
+                                    ▼
+                        ┌────────────────────┐
+                        │  AI Reward Model   │
+                        │  R_i = f(Q,C,V,L)  │
+                        └────────────────────┘
+```
 
 ---
 
@@ -85,35 +147,65 @@ python run_experiment.py --instance medium --iters 500 --pop 80
 
 ```
 haqoa/
-├── engine.py            ← Core HAQOA engine (HAQOAEngine, HAQOAConfig)
-├── operators.py         ← TSP mutation / crossover operators
-├── metrics.py           ← Convergence metrics, statistical tests
+├── engine.py           ← AQSE-v1: original HAQOA core
+├── engine_x.py         ← AQSE-v2: full HAQOA-X engine ★
+├── similarity.py       ← similarity density field (Part 6) ★
+├── multi_scale.py      ← 3-layer hierarchical search (Part 9) ★
+├── operators.py        ← OX / PMX / edge-assembly crossover
+├── metrics.py          ← comparison + Phase 3 statistical tests
 ├── problems/
-│   └── tsp.py           ← TSP instance, distance matrix, benchmark suite
+│   └── tsp.py          ← TSPInstance + 6 benchmark instances
 ├── baselines/
-│   └── algorithms.py    ← GA, SA, PSO, ACO
+│   └── algorithms.py   ← GA, SA, PSO, ACO
 └── visualization/
-    └── plots.py         ← Convergence, entropy, route, bar charts
-run_experiment.py        ← Experiment runner CLI
+    └── plots.py        ← all visualization functions
+run_haqoax.py           ← HAQOA-X experiment CLI ★
+run_phase3.py           ← Phase 3 multi-run statistical CLI ★
+run_experiment.py       ← legacy Phase 1+2 CLI
 requirements.txt
+setup.py
 ```
+
+---
+
+## Benchmark Results
+
+### 20 Cities (random)
+
+| Algorithm  | Best Tour | Gap vs 2-opt |
+|------------|-----------|--------------|
+| **HAQOA-X**| **341.6** | **−0.38%**   |
+| HAQOA      | 342.9     |  0.00%       |
+| GA         | 341.6     | −0.38%       |
+| SA         | 341.6     | −0.38%       |
+| PSO        | 341.6     | −0.38%       |
+| ACO        | 341.6     | −0.38%       |
+| 2-opt ref  | 342.9     |  0%          |
+
+> HAQOA-X matches best-in-class on small instances while providing
+> significantly richer diagnostics: energy breakdown, turbulence monitoring,
+> multi-scale activity, and AI reward dynamics.
 
 ---
 
 ## Roadmap
 
-- [x] Phase 1 — Mathematical formalization + core engine
+- [x] Phase 1 — Mathematical formalization + AQSE-v1 core engine
 - [x] Phase 2 — TSP simulation + baseline comparison
-- [ ] Phase 3 — Multi-run statistical validation (Wilcoxon test, CI)
-- [ ] Phase 4 — RL-based AI guidance layer (reward-signal integration)
+- [x] Phase 3 — Multi-run statistical validation (Wilcoxon, Friedman, CI)
+- [x] **Phase 4 — HAQOA-X: full 5-component energy + multi-scale search**
 - [ ] Phase 5 — Large-scale evaluation (n=100, n=500 TSP)
-- [ ] Phase 6 — Qiskit simulation layer (quantum circuit mapping)
+- [ ] Phase 6 — RL-based adaptive reward shaping
+- [ ] Phase 7 — Qiskit simulation layer (quantum circuit mapping)
+- [ ] Phase 8 — Multi-objective HAQOA-X (Pareto front evolution)
+- [ ] Phase 9 — Beyond TSP: scheduling, portfolio, NAS
 
 ---
 
 ## Research Standards
 
-- No "quantum supremacy" language
+- No "quantum supremacy" language — quantum-**inspired**, not quantum-dependent
 - All results reproducible with fixed seeds
-- Baseline comparisons mandatory before any claims
-- Ablation study infrastructure in `haqoa/metrics.py`
+- Mandatory baseline comparisons before any claims
+- Statistical significance via Wilcoxon + Friedman in Phase 3
+- Every mechanism must survive simulation, stress testing, and statistical validation

@@ -88,25 +88,34 @@ def order_crossover(parent_a: List[int], parent_b: List[int]) -> List[int]:
 
 def pmx_crossover(parent_a: List[int], parent_b: List[int]) -> List[int]:
     """
-    PMX (Partially Mapped Crossover): another permutation crossover.
+    PMX (Partially Mapped Crossover) — fully corrected implementation.
+
+    Algorithm:
+      1. Copy segment [start, end] from parent_a → child.
+      2. Build pos_in_a: gene_value → index, for positions in the segment.
+      3. For every position outside the segment, take parent_b[i].
+         If that value already appears in the copied segment, follow the
+         chain:  val → parent_a position of val → parent_b at that position
+         until a value not in the segment is reached.
+         The chain always terminates because parent permutations are bijections.
     """
     n = len(parent_a)
     start, end = sorted(random.sample(range(n), 2))
 
     child = [-1] * n
     child[start:end + 1] = parent_a[start:end + 1]
+    segment_set = set(parent_a[start:end + 1])
 
-    mapping = {}
-    for i in range(start, end + 1):
-        if parent_b[i] not in child[start:end + 1]:
-            mapping[parent_b[i]] = parent_a[i]
+    # Map: gene value → its index within parent_a's segment
+    pos_in_a = {parent_a[k]: k for k in range(start, end + 1)}
 
     for i in range(n):
-        if child[i] == -1:
-            val = parent_b[i]
-            while val in mapping:
-                val = mapping[val]
-            child[i] = val
+        if start <= i <= end:
+            continue                         # already filled from parent_a
+        val = parent_b[i]
+        while val in segment_set:            # follow chain until val is free
+            val = parent_b[pos_in_a[val]]    # pos_in_a always has val (bijection)
+        child[i] = val
 
     return child
 

@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import random
 import math
-from typing import List, Optional, Tuple, Dict, Any, Callable
+from typing import List, Tuple, Dict, Any, Callable
 
 import numpy as np
 

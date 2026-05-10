@@ -9,7 +9,7 @@ from __future__ import annotations
 import time
 import math
 import random
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
 import numpy as np
 
@@ -386,21 +386,21 @@ def run_all_baselines(
     Convenience function: run all four baselines on a TSP instance.
     Returns dict: algo_name → result_dict.
     """
-    print(f"  Running GA...")
+    print("  Running GA...")
     ga = GeneticAlgorithm(tsp, population_size=population_size,
                           max_generations=max_iterations, seed=seed)
     ga_res = ga.run()
 
-    print(f"  Running SA...")
+    print("  Running SA...")
     sa = SimulatedAnnealing(tsp, max_iterations=max_iterations * 100, seed=seed)
     sa_res = sa.run()
 
-    print(f"  Running PSO...")
+    print("  Running PSO...")
     pso = DiscreteParticleSwarm(tsp, swarm_size=population_size,
                                 max_iterations=max_iterations, seed=seed)
     pso_res = pso.run()
 
-    print(f"  Running ACO...")
+    print("  Running ACO...")
     aco = AntColonyOptimisation(tsp, n_ants=population_size // 2,
                                 max_iterations=max_iterations, seed=seed)
     aco_res = aco.run()

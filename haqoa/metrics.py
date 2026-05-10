@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import math
 import warnings
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, List, Optional
 
 import numpy as np
 

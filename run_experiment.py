@@ -13,10 +13,7 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
-import os
 from pathlib import Path
-
-import numpy as np
 
 # ── Ensure package is importable from this directory ─────────────────────────
 sys.path.insert(0, str(Path(__file__).parent))
@@ -25,7 +22,7 @@ from haqoa.engine import HAQOAEngine, HAQOAConfig
 from haqoa.operators import make_tsp_objective, make_tsp_operators, adaptive_mutation
 from haqoa.problems.tsp import BENCHMARK_SUITE, TSPInstance
 from haqoa.baselines.algorithms import run_all_baselines
-from haqoa.metrics import comparison_table, convergence_speed, compute_gap
+from haqoa.metrics import comparison_table, compute_gap
 from haqoa.visualization.plots import (
     plot_convergence,
     plot_entropy_dynamics,

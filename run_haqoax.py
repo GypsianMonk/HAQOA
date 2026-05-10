@@ -12,7 +12,7 @@ Usage:
 
 from __future__ import annotations
 
-import argparse, logging, sys, time
+import argparse, logging, sys
 from pathlib import Path
 
 import numpy as np
@@ -25,16 +25,13 @@ from haqoa.operators import make_tsp_objective
 from haqoa.problems.tsp import BENCHMARK_SUITE, TSPInstance
 from haqoa.baselines.algorithms import run_all_baselines
 from haqoa.similarity import tsp_edge_jaccard, tsp_positional_similarity
-from haqoa.metrics import comparison_table, compute_gap, phase3_report, critical_difference_ranks
+from haqoa.metrics import comparison_table, compute_gap
 from haqoa.visualization.plots import (
     plot_convergence,
     plot_quality_bars,
     plot_energy_breakdown,
     plot_multi_scale_activity,
     plot_haqoax_dashboard,
-    plot_boxplots,
-    plot_convergence_bands,
-    plot_significance_heatmap,
 )
 
 logging.basicConfig(

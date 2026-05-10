@@ -297,13 +297,11 @@ class HAQOAXEngine:
         termination = "max_iterations"
 
         for iteration in range(self.cfg.max_iterations):
-            t_iter = time.perf_counter()
-
             # ── 1. Evaluate population ────────────────────────────────────────
             self._evaluate_population()
 
             # ── 2. Compute similarity density field ───────────────────────────
-            density_scores = self._compute_density_field()
+            density_scores = self._compute_density_field(iteration)
 
             # ── 3. Build 5-component energy ───────────────────────────────────
             self._compute_energy(density_scores)
@@ -406,8 +404,8 @@ class HAQOAXEngine:
             self.population.append(QuantumStateX(solution=sol, layer="init"))
 
         self._evaluate_population()
-        self._compute_density_field()
-        self._compute_energy(np.zeros(len(self.population)))
+        real_density = self._compute_density_field()   # FIX BUG-4: use real density
+        self._compute_energy(real_density)
         self._compute_probabilities()
         self._update_entropy()
 
@@ -416,13 +414,20 @@ class HAQOAXEngine:
     # ──────────────────────────────────────────────────────────────────────────
 
     def _evaluate_population(self):
-        """Evaluate objective and update best state. O(pop_size)."""
+        """
+        Evaluate objective for all states that are marked dirty (newly created).
+        Unchanged survivors (age > 0, not dirty) skip re-evaluation.
+        FIX BUG-6: avoids redundant objective calls on elite states.
+        """
         for state in self.population:
-            q = self.obj(state.solution)
-            state.quality_history.append(q)
-            if len(state.quality_history) > 15:
-                state.quality_history.pop(0)
-            state.quality = q
+            # Only re-evaluate if state was just created (age==0) or explicitly dirty
+            if state.age == 0 or getattr(state, "_dirty", True):
+                q = self.obj(state.solution)
+                state.quality_history.append(q)
+                if len(state.quality_history) > 15:
+                    state.quality_history.pop(0)
+                state.quality = q
+                state._dirty = False
             state.age += 1
 
         best_now = min(self.population, key=lambda s: s.quality)
@@ -433,15 +438,17 @@ class HAQOAXEngine:
     # Similarity Density Field  (Part 6)
     # ──────────────────────────────────────────────────────────────────────────
 
-    def _compute_density_field(self) -> np.ndarray:
+    def _compute_density_field(self, iteration: int = 0) -> np.ndarray:
         """
         D_i = (1/N) Σ_j δ(s_i, s_j)
         Returns normalised density scores in [0,1].
+        FIX BUG-8: passes iteration as seed for varied sparse sampling.
         """
         solutions = [s.solution for s in self.population]
         scores = compute_density_scores(
             solutions, self._sim_fn,
             max_pairs=self.cfg.density_max_pairs,
+            seed=iteration,
         )
         for state, d in zip(self.population, scores):
             state.energy_density = float(d)
@@ -457,8 +464,6 @@ class HAQOAXEngine:
         q_min, q_max = qualities.min(), qualities.max()
         q_range = max(q_max - q_min, 1e-10)
 
-        best_q = q_min   # for risk computation
-
         for i, state in enumerate(self.population):
             q = state.quality
 
@@ -468,8 +473,12 @@ class HAQOAXEngine:
             # D_i: similarity density (already computed)
             D = density_scores[i]
 
-            # R_i: instability risk — deviation from current best
-            R = (q - best_q) / q_range
+            # R_i: instability risk — age-weighted quality deviation from population mean
+            # Distinct from C_i (which is absolute cost); R_i captures
+            # relative instability: old states with poor quality are high-risk.
+            mean_q = float(qualities.mean())
+            age_factor = min(state.age / max(1, self.cfg.max_iterations * 0.1), 1.0)
+            R = min(abs(q - mean_q) / (q_range + 1e-10) * (0.5 + 0.5 * age_factor), 1.0)
 
             # V_i: volatility — std of recent quality history
             if len(state.quality_history) > 2:
@@ -521,8 +530,9 @@ class HAQOAXEngine:
         probs = np.clip(probs, 1e-12, 1.0)
         raw_H = float(-np.sum(probs * np.log(probs)))
 
-        # Damped entropy
+        # Damped entropy — save previous BEFORE overwriting (needed for turbulence)
         mu = self.cfg.entropy_damping
+        self._prev_entropy = self._entropy                   # FIX BUG-1
         self._entropy = (1 - mu) * raw_H + mu * self._prev_entropy
 
         # Update per-state contribution
@@ -534,8 +544,6 @@ class HAQOAXEngine:
         if len(self._h_history) > self.cfg.h_max_window:
             self._h_history.pop(0)
         self._h_max = max(max(self._h_history), 1e-6)
-
-        self._prev_entropy = self._entropy
 
     # ──────────────────────────────────────────────────────────────────────────
     # Turbulence  (Part 11)
@@ -646,7 +654,16 @@ class HAQOAXEngine:
 
         for _ in range(n_new):
             sol = self.random_sol()
-            self.population.append(QuantumStateX(solution=sol, layer="regen"))
+            ns = QuantumStateX(solution=sol, layer="regen")
+            ns._dirty = True
+            self.population.append(ns)
+
+        # FIX BUG-7: cap population to prevent unbounded growth
+        max_pop = int(self.cfg.population_size * 1.5)
+        if len(self.population) > max_pop:
+            # Keep best max_pop states by quality
+            self.population.sort(key=lambda s: s.quality)
+            self.population = self.population[:max_pop]
 
         return n_new
 
@@ -703,6 +720,8 @@ class HAQOAXEngine:
                 new_states.append(QuantumStateX(solution=sol, layer=layer))
                 layer_counts[layer] = layer_counts.get(layer, 0) + 1
 
+        for s in new_states:
+            s._dirty = True
         self.population.extend(new_states)
         return len(new_states), layer_counts
 

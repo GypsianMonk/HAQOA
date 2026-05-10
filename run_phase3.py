@@ -35,8 +35,6 @@ from haqoa.baselines.algorithms import (
 from haqoa.metrics import (
     phase3_report,
     critical_difference_ranks,
-    summarise_multi_run,
-    friedman_test,
 )
 from haqoa.visualization.plots import (
     plot_boxplots,

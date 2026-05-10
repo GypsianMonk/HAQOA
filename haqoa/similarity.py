@@ -10,7 +10,7 @@ Approximate k-NN for large populations (n > 200).
 
 from __future__ import annotations
 
-from typing import List, Callable, Optional
+from typing import List, Callable
 import numpy as np
 
 
@@ -119,17 +119,20 @@ def compute_density_scores(
     solutions: List[List],
     similarity_fn: Callable,
     max_pairs: int = 2000,
+    seed: int = None,        # FIX BUG-8: caller supplies varying seed
 ) -> np.ndarray:
     """
     D_i = mean pairwise similarity of state i to all other states.
     High D_i → state is in a dense cluster → should be penalised.
     Returns normalised array in [0, 1].
+    seed: pass the current iteration number to avoid biased sparse sampling.
     """
     n = len(solutions)
     if n == 1:
         return np.array([0.0])
 
-    D = compute_density_matrix(solutions, similarity_fn, max_pairs=max_pairs)
+    _seed = seed if seed is not None else id(solutions[0]) % (2**31)
+    D = compute_density_matrix(solutions, similarity_fn, max_pairs=max_pairs, seed=_seed)
     # Mean excluding self (diagonal = 1)
     scores = (D.sum(axis=1) - 1.0) / max(n - 1, 1)
 

@@ -102,14 +102,17 @@ class MultiScaleSearch:
         # Low entropy (convergence phase)  → heavy local
         g_frac = 0.30 + 0.40 * entropy_ratio          # 30–70% global
         l_frac = 0.10 + 0.40 * (1.0 - entropy_ratio)  # 10–50% local
-        r_frac = max(0.05, 1.0 - g_frac - l_frac)
+        r_frac = max(0.05, 1.0 - g_frac - l_frac)     # FIX BUG-5: now used
 
         n_global   = max(1, int(n_offspring * g_frac))
         n_local    = max(1, int(n_offspring * l_frac))
-        n_regional = max(0, n_offspring - n_global - n_local)
+        n_regional = max(0, int(n_offspring * r_frac))   # FIX BUG-5: use r_frac
+        # Correct rounding: distribute any remainder to global layer
+        remainder = n_offspring - n_global - n_local - n_regional
+        n_global  = max(1, n_global + remainder)
 
         clusters = _quality_clusters(solutions, qualities, n_clusters=3)
-        elite_idx, mid_idx, weak_idx = clusters[0], clusters[1], clusters[2]
+        elite_idx, mid_idx, _ = clusters[0], clusters[1], clusters[2]  # FIX weak_idx unused
 
         offspring = []
 

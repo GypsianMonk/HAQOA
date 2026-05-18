@@ -269,7 +269,7 @@ class HAQOAXEngine:
         self._beta:        float = config.beta_base
         self._entropy:     float = 0.0
         self._prev_entropy: float = 0.0
-        self._h_max:       float = 1e-6
+        self._h_max:       float = 1.0   # set properly in _initialise()
         self._h_history:   List[float] = []
         self._turbulence:  float = 0.0
         self._stagnation:  int = 0
@@ -408,6 +408,9 @@ class HAQOAXEngine:
         self._compute_energy(real_density)
         self._compute_probabilities()
         self._update_entropy()
+        # Theoretical H_max = log(N) — fixed reference, not rolling observed max.
+        # This is the only correct normalisation: uniform distribution achieves log(N).
+        self._h_max = float(np.log(max(len(self.population), 2)))
 
     # ──────────────────────────────────────────────────────────────────────────
     # Evaluation
@@ -539,11 +542,11 @@ class HAQOAXEngine:
         for state, p in zip(self.population, probs):
             state.entropy_contrib = float(-p * np.log(p))
 
-        # Rolling H_max
-        self._h_history.append(self._entropy)
-        if len(self._h_history) > self.cfg.h_max_window:
-            self._h_history.pop(0)
-        self._h_max = max(max(self._h_history), 1e-6)
+        # H_max: theoretical maximum = log(current_pop_size)
+        # Use fixed theoretical value so H/H_max falls when population converges.
+        # We never let H_max shrink below the initial log(N₀) to avoid rescaling.
+        theoretical_h_max = float(np.log(max(len(self.population), 2)))
+        self._h_max = max(self._h_max, theoretical_h_max)  # only grows
 
     # ──────────────────────────────────────────────────────────────────────────
     # Turbulence  (Part 11)
@@ -559,13 +562,58 @@ class HAQOAXEngine:
     # ──────────────────────────────────────────────────────────────────────────
 
     def _adapt_beta(self):
-        h_ratio = self._entropy / self._h_max
-        self._beta = self.cfg.beta_base * (1.0 + self.cfg.entropy_sensitivity * h_ratio)
-        self._beta = min(self._beta, self.cfg.beta_max)
+        """
+        Two-phase adaptive β schedule:
 
-        # Turbulence mitigation: reduce β when chaotic
+        Phase A — Annealing schedule (global):
+            β_target(t) = β_min + (β_max − β_min) * (t/T)^γ
+            Provides monotonic exploitation pressure increase over time.
+
+        Phase B — Energy-spread normalisation (local):
+            β_eff = β_target / (σ_E + ε)
+            where σ_E = std of current energy values.
+            Ensures Boltzmann discrimination is consistent regardless of
+            how tightly clustered the energies are. Without this, a small
+            energy spread makes all β values equivalent to near-zero.
+
+        Phase C — Entropy correction (global):
+            When H/H_max drops below diversity_floor, reduce β to
+            reopen exploration space (prevents premature convergence).
+
+        Phase D — Turbulence damping:
+            Reduce β when search is chaotic to stabilise dynamics.
+        """
+        iteration = len(self.history)
+        T = max(self.cfg.max_iterations, 1)
+
+        # Phase A: annealing schedule
+        frac = (iteration / T) ** 0.5          # concave ramp
+        beta_target = (self.cfg.beta_base +
+                       (self.cfg.beta_max - self.cfg.beta_base) * frac)
+
+        # Phase B: quality-CV-weighted amplification
+        # Energies are always in [0,1] → fixed denominator of 0.5 (mid-range).
+        # β_eff = β_target / 0.5 gives clean units.
+        # Additionally, scale by quality coefficient of variation so that
+        # a well-converged population (low CV) gets higher β than a diverse one.
+        qualities = np.array([s.quality for s in self.population])
+        q_cv = float(np.std(qualities) / (np.mean(qualities) + 1e-10))
+        # Map q_cv [0, ~0.5] → discrimination_factor [1.0, 0.2]
+        # High CV (diverse) → low factor (broad)  Low CV (converged) → high factor (sharp)
+        discrimination = 1.0 / (1.0 + q_cv * 4.0)
+        self._beta = beta_target * (0.5 + 0.5 * (1.0 - discrimination))
+
+        # Phase C: entropy diversity floor
+        h_ratio = min(self._entropy / (self._h_max + 1e-10), 1.0)
+        if h_ratio < 0.30:                          # entropy collapsed
+            self._beta *= h_ratio / 0.30            # proportionally reduce β
+            self._beta = max(self._beta, self.cfg.beta_base)
+
+        # Phase D: turbulence damping
         if self._turbulence > self.cfg.turbulence_threshold:
             self._beta *= 0.85
+
+        self._beta = float(np.clip(self._beta, self.cfg.beta_base, self.cfg.beta_max))
 
     # ──────────────────────────────────────────────────────────────────────────
     # AI Reward Model  (Part 10)
@@ -608,7 +656,7 @@ class HAQOAXEngine:
         if len(self.population) <= min_survivors:
             return 0
 
-        h_ratio = min(self._entropy / self._h_max, 1.0)
+        h_ratio = min(self._entropy / (self._h_max + 1e-10), 1.0)
         theta = (self.cfg.collapse_threshold_base +
                  self.cfg.collapse_alpha * (1.0 - h_ratio))
 
